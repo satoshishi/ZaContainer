@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = false)]
-public class PrefabInstallToZaContainerAttribute : Attribute
+public class InstallGameObjectToZaContainerAttribute : Attribute
 {
     public Type type;
 
-    public PrefabInstallToZaContainerAttribute(Type type)
+    public InstallGameObjectToZaContainerAttribute(Type type)
     {
         this.type = type;
     }

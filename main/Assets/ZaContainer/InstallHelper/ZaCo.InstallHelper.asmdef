@@ -1,0 +1,16 @@
+{
+    "name": "ZaCo.InstallHelper",
+    "rootNamespace": "",
+    "references": [
+        "GUID:ebc4b8d9d57a148398a1295381ed7157"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
