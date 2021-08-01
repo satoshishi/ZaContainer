@@ -13,6 +13,8 @@ namespace ZaCo.Helper
         [SerializeField]
         private List<InstallDecorator> m_installers;
 
+        public void AddInstaller(InstallDecorator installer) => m_installers.Add(installer);
+
         public void Handle(InstallHelperCallback onInstalled)
         {
             var concrete = new ConcreteInstaller(onInstalled);
