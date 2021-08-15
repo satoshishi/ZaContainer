@@ -1,23 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using ZaCo.Core;
-using System;
 using System.Linq;
+using ZaCo.Core;
 
 namespace ZaCo.Helper
 {
-    public class PrefabInstaller : InstallDecorator
+    public class ScriptableObjectInstaller : InstallDecorator
     {
         [SerializeField]
-        private List<GameObject> m_prefabs;
+        private ZaCoInstallPrefabObjects m_scriptable;
 
         [SerializeField]
         private Transform m_prefabRoot;
 
         public override ZaContainer Install(ZaContainer container)
         {
-            return container.RegistPrefab(m_prefabs,m_prefabRoot);;
+            return container.RegistPrefab(m_scriptable.prefabs,m_prefabRoot);
         }
     }
 }
