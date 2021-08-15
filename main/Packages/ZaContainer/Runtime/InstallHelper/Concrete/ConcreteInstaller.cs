@@ -18,7 +18,7 @@ namespace ZaCo.Helper
         public void Handle(ZaContainer container)
         {
             var _readonly = container.Build();
-            OnInstalled(_readonly);
+            OnInstalled?.Invoke(_readonly);
         }
 
         public void Dispose()
