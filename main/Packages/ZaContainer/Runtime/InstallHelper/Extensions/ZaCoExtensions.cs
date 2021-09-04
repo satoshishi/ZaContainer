@@ -5,7 +5,7 @@ using System;
 using System.Linq;
 using ZaCo.Core;
 
-namespace ZaCo.Helper
+namespace ZaCo.Core
 {
     public static class ZaCoExtensions
     {
