@@ -7,6 +7,6 @@ namespace ZaCo.Helper
     [CreateAssetMenu(menuName = "ZaCo/PrefabObjects")]
     public class ZaCoInstallPrefabObjects : ScriptableObject
     {
-        public List<GameObject> prefabs;
+        public List<InstallGameObjectInfo> prefabs;
     }
 }
