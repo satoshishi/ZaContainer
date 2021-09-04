@@ -45,7 +45,7 @@ namespace ZaCo.Core
                         id = id.Equals("") ? string.Empty : id,
                         instance = instance
                     });
-                    
+
                 instanceDict[type] = dependences;
             }
         }
@@ -120,15 +120,19 @@ namespace ZaCo.Core
 
             foreach (IEnumerable<DependenceInfo> info in instanceDict.Values)
             {
-                var services = info.ToList().Select(i => i.instance);
-                var targetMethods = services.GetType().GetMethods().Where(scirpt => scirpt.GetCustomAttributes(typeof(ReceiveZaContainerAttribute), false).Any());
+                var instances = info.ToList().Select(i => i.instance);
 
-                if (targetMethods != null && targetMethods.Count() > 0)
-                    methods.Add(new ReceiverMethods()
-                    {
-                        services = services,
-                        infos = targetMethods
-                    });
+                foreach (var target in instances)
+                {
+                    var targetMethods = target.GetType().GetMethods().Where(scirpt => scirpt.GetCustomAttributes(typeof(ReceiveZaContainerAttribute), false).Any());
+
+                    if (targetMethods != null && targetMethods.Count() > 0)
+                        methods.Add(new ReceiverMethods()
+                        {
+                            services = target,
+                            infos = targetMethods
+                        });
+                }
             }
 
             return methods;
