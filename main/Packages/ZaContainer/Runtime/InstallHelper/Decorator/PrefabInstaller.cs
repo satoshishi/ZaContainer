@@ -10,7 +10,7 @@ namespace ZaCo.Helper
     public class PrefabInstaller : InstallDecorator
     {
         [SerializeField]
-        private List<GameObject> m_prefabs;
+        private List<InstallGameObjectInfo> m_prefabs;
 
         [SerializeField]
         private Transform m_prefabRoot;

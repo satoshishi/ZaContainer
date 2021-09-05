@@ -10,11 +10,11 @@ namespace ZaCo.Helper
     public class HierarchyGameObjectInstaller : InstallDecorator
     {
         [SerializeField]
-        private List<GameObject> m_gameObject;
+        private List<InstallGameObjectInfo> targets;
 
         public override ZaContainer Install(ZaContainer container)
         {
-            return container.RegistGameObject(m_gameObject);
+            return container.RegistGameObject(targets);
         }
     }
 }

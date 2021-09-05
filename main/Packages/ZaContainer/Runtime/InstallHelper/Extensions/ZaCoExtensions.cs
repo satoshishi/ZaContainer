@@ -9,11 +9,11 @@ namespace ZaCo.Helper
 {
     public static class ZaCoExtensions
     {
-        public static ZaContainer RegistGameObject(this ZaContainer container, IEnumerable<GameObject> targets)
+        public static ZaContainer RegistGameObject(this ZaContainer container, IEnumerable<InstallGameObjectInfo> targets)
         {
-            foreach (GameObject target in targets)
+            foreach (InstallGameObjectInfo info in targets)
             {
-                var targetScripts = target.GetComponents<MonoBehaviour>().Select(mono => mono.GetType());
+                var targetScripts = info.target.GetComponents<MonoBehaviour>().Select(mono => mono.GetType());
 
                 var attributes = targetScripts
                     .Where(scirpt => scirpt.GetCustomAttributes(typeof(InstallGameObjectToZaContainerAttribute), false).Any())
@@ -23,20 +23,24 @@ namespace ZaCo.Helper
                     attribute =>
                     {
                         var targetType = attribute.type;
-                        container.Register(targetType, target.GetComponent(targetType));
+                        container.Register(targetType, info.target.GetComponent(targetType), info.id);
                     });
             }
 
             return container;
         }
 
-        public static ZaContainer RegistPrefab(this ZaContainer container, IEnumerable<GameObject> targets, Transform prefabRoot)
+        public static ZaContainer RegistPrefab(this ZaContainer container, IEnumerable<InstallGameObjectInfo> targets, Transform prefabRoot)
         {
-            List<GameObject> instantiated = new List<GameObject>();
-            foreach(GameObject target in targets)
+            List<InstallGameObjectInfo> instantiated = new List<InstallGameObjectInfo>();
+            foreach(InstallGameObjectInfo info in targets)
             {
-                var instance = GameObject.Instantiate(target,prefabRoot);
-                instantiated.Add(instance);
+                var instance = GameObject.Instantiate(info.target,prefabRoot);
+                instantiated.Add(new InstallGameObjectInfo()
+                {
+                    target = instance,
+                    id = info.id
+                });
             }
 
             return container.RegistGameObject(instantiated);

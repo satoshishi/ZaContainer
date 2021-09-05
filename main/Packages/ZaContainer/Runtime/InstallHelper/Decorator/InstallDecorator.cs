@@ -27,4 +27,12 @@ namespace ZaCo.Helper
 
         public abstract ZaContainer Install(ZaContainer container);
     }
+
+    [System.Serializable]
+    public class InstallGameObjectInfo
+    {
+        public GameObject target;
+
+        public string id;        
+    }
 }
