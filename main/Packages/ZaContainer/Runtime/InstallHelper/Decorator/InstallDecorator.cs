@@ -35,4 +35,12 @@ namespace ZaCo.Helper
 
         public string id;        
     }
+
+    [System.Serializable]
+    public class InstallMonoBehaviourInfo
+    {
+        public MonoBehaviour target;
+
+        public string id;        
+    }    
 }
