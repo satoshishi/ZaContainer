@@ -9,6 +9,27 @@ namespace ZaCo.Helper
 {
     public static class ZaCoExtensions
     {
+        public static ZaContainer RegistMonoBehaviour(this ZaContainer container, IEnumerable<InstallMonoBehaviourInfo> targets)
+        {
+            foreach (InstallMonoBehaviourInfo info in targets)
+            {
+                var targetScript = info.target.GetType();
+
+                var attributes = targetScript.GetCustomAttributes(typeof(InstallGameObjectToZaContainerAttribute), false).OfType<InstallGameObjectToZaContainerAttribute>();
+                if(attributes == null)
+                    continue;
+
+                attributes.ToList().ForEach(
+                    attribute =>
+                    {
+                        var targetType = attribute.type;
+                        container.Register(targetType, info.target.GetComponent(targetScript), info.id);
+                    });
+            }
+
+            return container;
+        }        
+
         public static ZaContainer RegistGameObject(this ZaContainer container, IEnumerable<InstallGameObjectInfo> targets)
         {
             foreach (InstallGameObjectInfo info in targets)
